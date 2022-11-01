@@ -4,7 +4,7 @@ import os
 def menu():
     print('''
     ________MENU_________
-    \n1. Python3 \n2. WIP
+    \n1. Python \n2. WIP
           ''')
 
 def main():
