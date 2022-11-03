@@ -16,10 +16,10 @@ Hability to spawn a MSFVenom payload in a  couple of seconds
 
 ## UPDATE V0.9
 ### **NEW**
-+Added Verbose system (MSFVenom)
-+Brand new Sub Menu system (less cluttered code spread around.)
-+Added support for Windows DLLInject (MSFVenom)
-+New Platform Selection Menu system.
-+New Platform Selection system (yet again less cluttered code to worry about)
++ Added Verbose system (MSFVenom)
++ Brand new Sub Menu system (less cluttered code spread around.)
++ Added support for Windows DLLInject (MSFVenom)
++ New Platform Selection Menu system.
++ New Platform Selection system (yet again less cluttered code to worry about)
 ### **FIXES**
-+Fixed some of the buggy menus
++ Fixed some of the buggy menus
