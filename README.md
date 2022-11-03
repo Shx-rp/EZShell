@@ -22,4 +22,4 @@ Added support for Windows DLLInject (MSFVenom)
 New Platform Selection Menu system.
 New Platform Selection system (yet again less cluttered code to worry about)
 ### **FIXES**
-Fixed some of the menu's not working properly.
+Fixed some of the buggy menus
