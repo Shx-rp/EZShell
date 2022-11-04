@@ -1,6 +1,9 @@
 # EZShell
 Makes Reverse shell easy and acessible.
 
+## WARNING
+This program requires MSFVenom to properly run. otherwise MSFVenom payloads will be generated but wont be albe to execute.
+
 ## Required Dependencies
 ### Pyperclip
 Instalation: `pip3 install pyperclip`
