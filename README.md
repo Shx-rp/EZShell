@@ -26,4 +26,4 @@ just execute `python3 EZShell.py` and navigate menus using numbers.
 + New Platform Selection system (yet again less cluttered code to worry about)
 + Reworked some of the code 
 ### **FIXES**
-+ Further code optimization
++ Further code optimization (Reduced amount of lines by over 33%)
