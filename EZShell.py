@@ -33,7 +33,6 @@ def encodingSettings(selectLib, selectShell, name):
             print("\nPORT= " + port)
             print("\nShell= " + shellType)
             print("\nENCODING= " + encode)
-            #os.system("cat" + name + "> teste2" )
     if encodeSelect == 2:
         encode = "None"
         clip.copy(shell)
